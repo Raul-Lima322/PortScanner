@@ -45,7 +45,7 @@ int main(){
 
 if (conexao_ip == 0)
 {
-    printf("[*] Porta %d: aberta!\n", porta);
+    printf("[*] Porta %d:\n", porta);
     conexoes += 1;
 
     const char *mensagem_usuario = 
@@ -57,13 +57,16 @@ if (conexao_ip == 0)
         "\n                       v1.1\n";
 
     send(socket_rede, mensagem_usuario, strlen(mensagem_usuario), 0);
-    printf("    [->] Mensagem enviada!\n");
+    printf("    [>] Mensagem enviada!\n\n");
 
     char buffer_resposta[1024];
     memset(buffer_resposta, 0, sizeof(buffer_resposta));   
-    printf("\n");
+
+   
 
         }
+   
     }
+ printf("Quantidade de conexões: %d\n", conexoes);
 }
 //comando para abrir uma porta:     sudo nc -lk 127.0.0.1 {n da porta}          ex: sudo nc -lk 127.0.0.1 80
