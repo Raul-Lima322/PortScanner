@@ -8,7 +8,7 @@ Para compilar o programa basta rodar:
 
 E para executar:
 
-`./main`
+`./main {ip alvo}`
 
 ---
 
