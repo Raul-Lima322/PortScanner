@@ -7,9 +7,22 @@
 #include <sys/time.h>
 
 
-int main(){
+int main(int argc, char *argv[]){
 
-    const char *ip_alvo = "127.0.0.1"; 
+if (argc != 2)
+{
+    printf("[*] Maneira Correta: ./main {ip}\n");
+    return 1;
+}
+
+const char *ip_alvo = argv[1];
+
+if (*ip_alvo == '\0')
+{
+    printf("[*] Ip inválido\n");
+    return 1;
+}
+
     int porta_inicio = 22;
     int porta_final = 443;
     int conexoes = 0;
@@ -45,7 +58,7 @@ int main(){
 
 if (conexao_ip == 0)
 {
-    printf("[*] Porta %d:\n", porta);
+    printf("[>] Porta %d: Aberta\n", porta);
     conexoes += 1;
 
     const char *mensagem_usuario = 
@@ -54,19 +67,17 @@ if (conexao_ip == 0)
         "| |_) / _ \\| '__| __\\___ \\ / __/ _` | '_ \\| '_ \\ / _ \\ '__|\n"
         "|  __/ (_) | |  | |_ ___) | (_| (_| | | | | | | |  __/ |   \n"
         "|_|   \\___/|_|   \\__|____/ \\___\\__,_|_| |_|_| |_|\\___|_|  \n"
-        "\n                       v1.1\n";
+        "\n                       v1.2\n";
 
     send(socket_rede, mensagem_usuario, strlen(mensagem_usuario), 0);
-    printf("    [>] Mensagem enviada!\n\n");
 
     char buffer_resposta[1024];
     memset(buffer_resposta, 0, sizeof(buffer_resposta));   
-
-   
-
         }
-   
+        close(socket_rede);
     }
- printf("Quantidade de conexões: %d\n", conexoes);
+    printf("\nQuantidade de conexões: %d\n", conexoes);
+ return 0;
 }
+
 //comando para abrir uma porta:     sudo nc -lk 127.0.0.1 {n da porta}          ex: sudo nc -lk 127.0.0.1 80
